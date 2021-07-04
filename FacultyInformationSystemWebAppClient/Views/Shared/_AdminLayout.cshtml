@@ -1,0 +1,199 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Capgemini</title>
+    <link href="~/css/site.css" rel="stylesheet" type="text/css" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/lmscustom.css" rel="stylesheet" />
+    <link href="~/css/fontawesome-all.css" rel="stylesheet" />
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <style>
+        /*body {
+            background-color: #808080;
+        }*/
+        .dropbtn {
+            background-color: orange;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+        }
+        /*
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }*/
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: orange;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #ffed97;
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: orange;
+        }
+    </style>
+
+</head>
+<body style="padding:unset">
+    <div>
+        <div style="background-color:darkblue;">
+            <div style="background-color:yellow; height:8px; width:450px">
+            </div>
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+            <span class="icon">
+            </span>
+            @Html.ActionLink("Vignan", "Index", "Admin", new { area = "" }, new { @class = "navbar-brand" })
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item btn-sm btn-danger text-light">
+                        @*<i class="fas fa-home"></i>*@
+                        @Html.ActionLink("Home", "Index", "Admin", new { area = "" }, new { @class = "nav-link", style = "display:inline" })
+                    </li>
+                    <li class="nav-item btn-sm btn-danger text-light">
+                        @*<i class="fas fa-address-card"></i>*@
+                        @Html.ActionLink("About", "About", "Admin", new { area = "" }, new { @class = "nav-link", style = "display:inline" })
+                    </li>
+                    <li class="nav-item btn-sm btn-danger text-light">
+                        @*<i class="fas fa-id-badge"></i>*@
+                        @Html.ActionLink("Contact", "Contact", "Admin", new { area = "" }, new { @class = "nav-link", style = "display:inline" })
+                    </li>
+                </ul>
+                <ul class="navbar-nav justify-content-end" style="padding-right:50px">
+                    <li class="" style="padding-left:5px; padding-right:5px; padding-top:5px; padding-bottom:7px; font-size: 15px">
+
+                        <div class="nav-item btn-sm btn-warning text-dark" title="Register">
+                            <a class="text-dark" asp-area="Identity" asp-page="/Account/Register">AddUser</a>
+                        </div>
+
+
+                        @*@Html.ActionLink("AddUser", "AddUser", "Admin", null, new { @class = "nav-item btn-sm btn-primary text-light", style = "text-decoration:none;" })*@
+                    </li>
+                    <li class="" style="padding-left: 5px; padding-right: 5px; padding-top:8px; padding-bottom:8px; font-size: 15px">
+
+                        @Html.ActionLink("Courses", "GetCourse", "Course", null, new { @class = "nav-item btn-sm btn-warning text-dark", style = "text-decoration:none;" })
+                    </li>
+                    <li class="" style="padding-left: 5px; padding-right: 5px; padding-top:8px; padding-bottom:8px; font-size: 15px">
+                        @Html.ActionLink("Subjects", "GetSubject", "Admin", null, new { @class = "nav-item btn-sm btn-warning text-dark", style = "text-decoration:none;" })
+                    </li>
+                    <li class="" style="padding-left: 5px; padding-right: 5px; padding-top:8px; padding-bottom:8px; font-size: 15px">
+                        @Html.ActionLink("FacultyJob", "FacultyIndex", "Admin", null, new { @class = "nav-item btn-sm btn-warning text-dark", style = "text-decoration:none;" })
+                    </li>
+                    <li class="" style="padding-left: 5px; padding-right: 5px; padding-top:8px; padding-bottom:8px; font-size: 15px">
+                        @Html.ActionLink("Departments", "GetDepartment", "Department", null, new { @class = "nav-item btn-sm btn-warning text-dark", style = "text-decoration:none;" })
+                    </li>
+                    <li class="" style="padding-left: 5px; padding-right: 5px; padding-top:8px; padding-bottom:8px; font-size: 15px">
+                        @Html.ActionLink("Designation", "GetDesignation", "Admin", null, new { @class = "nav-item btn-sm btn-warning text-dark", style = "text-decoration:none;" })
+                    </li>
+
+                    <li class="" style="padding-left:1px; padding-right:6px">
+
+                        <div class="btn btn-sm dropdown">
+                            <button class="btn btn-sm btn-warning text-dark">Publications</button>
+                            <div class="dropdown-content">
+                                <a class="text-dark" asp-action="GetFilterIndex" asp-controller="Publication" asp-route-id="1">Yearly</a>
+                                <a class="text-dark" asp-action="GetFilterIndex" asp-controller="Publication" asp-route-id="2">Monthly</a>
+                                <a class="text-dark" asp-action="GetFilterIndex" asp-controller="Publication" asp-route-id="3">Recent</a>
+
+                            </div>
+                        </div>
+                    </li>
+
+                    @*<li class="" style="padding-left:5px; padding-right:10px">
+                            @Html.ActionLink("Return", "Return", "AdminTransaction", null, new { @class = "nav-item btn-sm btn-primary text-light", style = "text-decoration:none;" })
+                        </li>*@
+                </ul>
+
+
+                <ul class="navbar-nav">
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-light" @*asp-area="Identity" asp-page="/Account/Manage/Index"*@ title="Manage">Hello @User.Identity.Name!</a>
+                        </li>
+                        <li class="nav-item">
+                            <form class="form-inline text-primary btn-light" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                <button type="submit" class="nav-link btn btn-link btn-light text-primary">Logout</button>
+                            </form>
+                        </li>
+                    }
+                    else
+                    {
+
+                        @*<li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                            </li>
+                            <li class="nav-item">
+
+                                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                            </li>*@
+
+                        <li class="nav-item">
+                            <button class="btn btn-danger">
+                                <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                            </button>
+
+                        </li>
+
+                    }
+                </ul>
+
+            </div>
+        </nav>
+    </div>
+    <div style="padding-left:20px; padding-right:20px">
+        @RenderBody()
+    </div>
+    <div>
+
+        <footer>
+            <div style="" class="card text-center text-white bg-danger">
+                <div class="card-header">
+                    Thank you for your work
+                </div>
+                <div class="card-body">
+
+                    <p>&copy; @DateTime.Now.Year - FacultyInformationSystem</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <div style="background-color:darkblue;">
+        <div style="background-color:yellow; height:8px; width:450px">
+        </div>
+    </div>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

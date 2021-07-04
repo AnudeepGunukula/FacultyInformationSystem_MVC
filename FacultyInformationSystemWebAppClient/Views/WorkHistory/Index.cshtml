@@ -1,0 +1,71 @@
+﻿@model IEnumerable<FacultyInformationSystemEntities.WorkHistory>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Organization)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobBeginDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobEndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobResponsibilities)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Faculty)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Organization)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobBeginDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobEndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobResponsibilities)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Faculty.FacultyId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.WorkHistoryId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.WorkHistoryId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.WorkHistoryId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

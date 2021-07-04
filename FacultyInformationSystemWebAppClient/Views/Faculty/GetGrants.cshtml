@@ -1,0 +1,55 @@
+﻿@model IEnumerable<FacultyInformationSystemEntities.Grant>
+
+@{
+    ViewData["Title"] = "GrantIndex";
+    Layout = "~/Views/Shared/_FacultyLayout.cshtml";
+
+}
+</br>
+<h1 class="text-center"> Add Grant Details </h1> </br>
+
+<p>
+    <div class="btn btn-sm btn-primary" data-toggle="tooltip" title="Create">
+        <a class="text-light" asp-action="CreateGrants">Add Grant</a>
+    </div>
+</p>
+<table class="table">
+    <thead class="bg-success text-light">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GrantTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GrantDescription)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Faculty)
+                </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GrantTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GrantDescription)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Faculty.FacultyId)
+                    </td>*@
+                <td>
+                    <div class="btn btn-sm btn-warning" data-toggle="tooltip" title="Edit">
+                        <a class="text-light" asp-action="UpdateGrants" asp-route-id="@item.GrantId">Edit</a>
+                    </div>
+                    <div class="btn btn-sm btn-danger" data-toggle="tooltip" title="Delete">
+                        <a class="text-light" asp-action="DeleteGrants" asp-route-id="@item.GrantId">Delete</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,70 @@
+﻿@model IEnumerable<FacultyInformationSystemEntities.Publication>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_FacultyLayout.cshtml";
+}
+</br>
+<h1 class="text-center"> Add Publication Details </h1> </br>
+<p>
+    <div class="btn btn-sm btn-primary" data-toggle="tooltip" title="Create">
+        <a class="text-light" asp-action="CreatePublication">Add Publication</a>
+    </div>
+</p>
+<table class="table">
+    <thead class="bg-success text-light">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PublicationTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArticleName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PublisherName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PublisherLocation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CitationDate)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PublicationTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArticleName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PublisherName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PublisherLocation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CitationDate)
+                </td>
+
+                <td>
+
+                    <div class="btn btn-sm btn-warning" data-toggle="tooltip" title="Edit">
+                        <a class="text-light" asp-action="UpdatePublication" asp-route-id="@item.PublicationId">Edit</a>
+                    </div>
+                    <div class="btn btn-sm btn-danger" data-toggle="tooltip" title="Delete">
+                        <a class="text-light" asp-action="DeletePublication" asp-route-id="@item.PublicationId">Delete</a>
+                    </div>
+
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

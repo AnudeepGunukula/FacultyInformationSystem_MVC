@@ -1,0 +1,51 @@
+﻿@model FacultyInformationSystemEntities.Faculty
+
+@{
+    ViewData["Title"] = "EditJob";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>EditJob</h1>
+
+<h4>Faculty</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditJob">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="FacultyId" />
+            <input type="hidden" asp-for="FirstName" />
+            <input type="hidden" asp-for="LastName" />
+            <input type="hidden" asp-for="Address" />
+            <input type="hidden" asp-for="City" />
+            <input type="hidden" asp-for="State" />
+            <input type="hidden" asp-for="Pincode" />
+            <input type="hidden" asp-for="MobileNo" />
+            <input type="hidden" asp-for="HireDate" />
+            <input type="hidden" asp-for="EmailAddress" />
+            <input type="hidden" asp-for="DateofBirth" />
+
+            <div class="form-group">
+                <label asp-for="DepartmentName" class="control-label"></label>
+                <select asp-for="DeptId" class="form-control" asp-items="@(new SelectList(@ViewBag.DepartmentList,"DeptId", "DeptName"))">
+                </select>
+                <span asp-validation-for="DeptId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DesignationName" class="control-label"></label>
+                <select asp-for="DesignationId" class="form-control" asp-items="@(new SelectList(@ViewBag.DesignationList,"DesignationId", "DesignationName"))">
+                </select>
+                <span asp-validation-for="DesignationId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" asp-controller="Admin">Back to List</a>
+</div>
+

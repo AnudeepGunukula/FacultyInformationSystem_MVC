@@ -1,0 +1,102 @@
+﻿@model FacultyInformationSystemEntities.Faculty
+
+@{
+    ViewData["Title"] = "GetFacultyInfo";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>GetFacultyInfo</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead class="bg-danger text-light">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.State)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pincode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MobileNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HireDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmailAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateofBirth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartmentName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DesignationName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => Model.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.State)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Pincode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.MobileNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.HireDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.EmailAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.DateofBirth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.DepartmentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.DesignationName)
+            </td>
+            <td>
+                <div class="btn btn-sm btn-warning" data-toggle="tooltip" title="Edit">
+                    <a class="text-light" asp-action="EditJob" asp-route-id="@Model.FacultyId">Edit</a>
+                </div>
+
+            </td>
+        </tr>
+
+    </tbody>
+</table>

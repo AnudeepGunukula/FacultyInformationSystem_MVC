@@ -1,0 +1,60 @@
+﻿@model IEnumerable<FacultyInformationSystemEntities.Publication>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+}
+
+<h1>Index</h1>
+@*<p>
+        <div class="btn btn-sm btn-primary" data-toggle="tooltip" title="Create">
+            <a class="text-light" asp-action="CreatePublication">Add Publication</a>
+        </div>
+    </p>*@
+<table class="table">
+    <thead class="bg-primary text-light">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PublicationTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArticleName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PublisherName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PublisherLocation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CitationDate)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PublicationTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArticleName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PublisherName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PublisherLocation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CitationDate)
+                </td>
+
+
+            </tr>
+        }
+    </tbody>
+</table>

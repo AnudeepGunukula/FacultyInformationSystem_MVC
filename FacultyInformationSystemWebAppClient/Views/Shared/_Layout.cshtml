@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - FacultyInformationSystem</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <style>
+        body {
+            background-color: #808080;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div style="background-color:#ff0000;">
+            <div style="background-color:#ffd800; height:8px; width:450px">
+            </div>
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <span class="icon">
+                <i class="fas fa-book-open"></i>
+            </span>
+            @Html.ActionLink("Vignan", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+
+
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item btn-sm btn-dark">
+                        <i class="fas fa-home"></i>
+                        @Html.ActionLink("Home", "Index", "Home", new { @class = "nav-link icon", style = "display:inline" })
+                    </li>
+                    <li class="nav-item btn-sm btn-dark">
+                        <i class="fas fa-address-card"></i>
+                        @Html.ActionLink("Privacy", "Privacy", "Home", new { @class = "nav-link icon", style = "display:inline" })
+                    </li>
+
+                </ul>
+
+                <ul class="navbar-nav justify-content-end">
+                    <li class="nav-item btn-sm btn-dark">
+                        <i class="fas fa-sign-in-alt"></i>
+                        @*<partial name="_LoginPartial" />*@
+                        <button class="btn btn-light">
+                            @*<a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Login">Login</a>*@
+                            @Html.ActionLink("Login", "Login", "Main", new { @class = "nav-link icon", style = "display:inline" })
+                        </button>
+
+
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+    </div>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <div>
+        <footer>
+            <div style="" class="card text-center text-white bg-dark">
+                <div class="card-header">
+                    Thank you for visiting us
+                </div>
+                <p>&copy; @DateTime.Now.Year - FacultyInformationSystem</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

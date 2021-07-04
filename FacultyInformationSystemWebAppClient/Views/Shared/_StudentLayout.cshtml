@@ -1,0 +1,116 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Capgemini</title>
+    <link href="~/css/site.css" rel="stylesheet" type="text/css" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/lmscustom.css" rel="stylesheet" />
+    <link href="~/css/fontawesome-all.css" rel="stylesheet" />
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+</head>
+<body style="padding:unset">
+    <div>
+        <div style="background-color:#d9534f;">
+            <div style="background-color:#ffd800; height:8px; width:450px">
+            </div>
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <span class="icon">
+            </span>
+            @Html.ActionLink("Vignan", "Index", "Student", new { area = "" }, new { @class = "navbar-brand" })
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item btn-sm btn-primary">
+                        @*<i class="fas fa-home"></i>*@
+                        @Html.ActionLink("Home", "Index", "Student", new { area = "" }, new { @class = "nav-link", style = "display:inline" })
+                    </li>
+                    <li class="nav-item btn-sm btn-primary">
+                        @*<i class="fas fa-address-card"></i>*@
+                        @Html.ActionLink("About", "About", "Student", new { area = "" }, new { @class = "nav-link", style = "display:inline" })
+                    </li>
+                    <li class="nav-item btn-sm btn-primary">
+                        @*<i class="fas fa-id-badge"></i>*@
+                        @Html.ActionLink("Contact", "Contact", "Student", new { area = "" }, new { @class = "nav-link", style = "display:inline" })
+                    </li>
+                </ul>
+                <ul class="navbar-nav justify-content-end" style="padding-right:50px">
+                    <li class="" style="padding-left:5px; padding-right:5px">
+
+                        @Html.ActionLink("Publications", "GetFacultyIndex", "Student", new { Id = UserManager.GetUserId(User) }, new { @class = "nav-item btn-sm btn-light text-dark", style = "text-decoration:none;" })
+                    </li>
+
+                </ul>
+
+
+                <ul class="navbar-nav">
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
+                        </li>
+                        <li class="nav-item">
+                            <form class="form-inline text-primary btn-light" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                <button type="submit" class="nav-link btn btn-link btn-light text-primary">Logout</button>
+                            </form>
+                        </li>
+                    }
+                    else
+                    {
+
+                        @*<li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                            </li>
+                            <li class="nav-item">
+
+                                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                            </li>*@
+
+                        <li class="nav-item">
+                            <button class="btn btn-primary">
+                                <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                            </button>
+
+                        </li>
+
+                    }
+                </ul>
+
+            </div>
+        </nav>
+    </div>
+    <div style="padding-left:20px; padding-right:20px">
+        @RenderBody()
+    </div>
+    <div>
+
+        <footer>
+            <div style="" class="card text-center text-white bg-primary">
+                <div class="card-header">
+                    Thank you for your work
+                </div>
+                <div class="card-body">
+
+                    <p>&copy; @DateTime.Now.Year - FacultyInformationSystem</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <div style="background-color:#d9534f;">
+        <div style="background-color:#ffd800; height:8px; width:450px">
+        </div>
+    </div>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

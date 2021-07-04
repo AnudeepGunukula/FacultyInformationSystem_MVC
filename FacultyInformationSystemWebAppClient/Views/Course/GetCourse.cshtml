@@ -1,0 +1,54 @@
+﻿@model IEnumerable<FacultyInformationSystemEntities.Course>
+
+@{
+    ViewData["Title"] = "Get Course";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+</br>
+<h1 class="text-center"> Course Details </h1> </br>
+<p>
+    <div class="btn btn-sm btn-primary" data-toggle="tooltip" title="Create">
+        <a class="text-light" asp-action="CreateNewCourse">Add Course</a>
+    </div>
+</p>
+<table class="table">
+    <thead class="bg-danger text-light">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseCredits)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartmentName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CourseName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CourseCredits)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DepartmentName)
+                </td>
+                <td>
+
+                    <div class="btn btn-sm btn-warning" data-toggle="tooltip" title="Edit">
+                        <a class="text-light" asp-action="UpdateCourse" asp-route-id="@item.CourseId">Edit</a>
+                    </div>
+                    <div class="btn btn-sm btn-danger" data-toggle="tooltip" title="Delete">
+                        <a class="text-light" asp-action="DeleteCourse" asp-route-id="@item.CourseId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

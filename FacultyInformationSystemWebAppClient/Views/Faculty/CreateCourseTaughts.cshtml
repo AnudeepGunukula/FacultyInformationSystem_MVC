@@ -1,0 +1,42 @@
+﻿@model FacultyInformationSystemEntities.CourseTaught
+
+@{
+    ViewData["Title"] = "CourseTaught_Create";
+    Layout = "~/Views/Shared/_FacultyLayout.cshtml";
+}
+
+<h1>Create CourseTaught</h1>
+
+<h4>CourseTaught</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateCourseTaughts">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FirstDateTaught" class="control-label"></label>
+                <input asp-for="FirstDateTaught" class="form-control" />
+                <span asp-validation-for="FirstDateTaught" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SubjectName" class="control-label"></label>
+                <select asp-for="SubjectId" class="form-control" asp-items="@(new SelectList(@ViewBag.SubjectList,"SubjectId", "SubjectName"))">
+                </select>
+                <span asp-validation-for="SubjectId" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

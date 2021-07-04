@@ -1,0 +1,33 @@
+﻿@model FacultyInformationSystemEntities.Publication
+@{
+    ViewData["Title"] = "GetYearIndex";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+</br>
+<h1 class="text-center"> Get Recent Publications </h1> </br>
+
+<h4>Faculty</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="PostDays">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <p>Enter the number of records</p>
+                <label title="Number of records" class="control-label"></label>
+                <input asp-for="PublicationId" class="form-control" />
+                <span asp-validation-for="PublicationId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="submit" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

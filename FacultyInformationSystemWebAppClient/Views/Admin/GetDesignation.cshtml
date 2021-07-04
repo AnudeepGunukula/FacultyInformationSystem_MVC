@@ -1,0 +1,50 @@
+﻿@model IEnumerable<FacultyInformationSystemEntities.Designation>
+
+@{
+    ViewData["Title"] = "DesignationIndex";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+}
+
+</br>
+<h1 class="text-center">Add New Designation</h1> </br>
+
+<p>
+    <div class="btn btn-sm btn-primary" data-toggle="tooltip" title="Create">
+        <a class="text-light" asp-action="CreateNewDesignation">Add Designation</a>
+    </div>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DesignationId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DesignationName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DesignationId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DesignationName)
+                </td>
+                <td>
+                    <div class="btn btn-sm btn-warning" data-toggle="tooltip" title="Edit">
+                        <a class="text-light" asp-action="UpdateDesignation" asp-route-id="@item.DesignationId">Edit</a>
+                    </div>
+                    <div class="btn btn-sm btn-danger" data-toggle="tooltip" title="Delete">
+                        <a class="text-light" asp-action="DeleteDesignation" asp-route-id="@item.DesignationId">Delete</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
